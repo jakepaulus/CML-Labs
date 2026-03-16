@@ -1,0 +1,180 @@
+annotations:
+  - border_color: '#000000FF'
+    border_radius: 0
+    border_style: ''
+    color: '#90F0EAFF'
+    thickness: 1
+    type: rectangle
+    x1: -120.0
+    y1: 80.0
+    x2: 480.0
+    y2: 440.0
+    z_index: 0
+nodes:
+  - boot_disk_size: null
+    configuration: |-
+      platform console serial
+      platform resource control-plane-extra-heavy
+      platform hardware throughput level MB T1
+      !
+      hostname C8000v-8CPU
+      !
+      license boot level network-advantage addon dna-advantage
+      !
+      interface GigabitEthernet1
+       ip address 192.168.101.1 255.255.255.0
+       no shutdown
+      !
+      interface GigabitEthernet2
+       ip address 192.168.102.1 255.255.255.0
+       no shutdown
+      !
+      line con 0
+       logging sync
+      !
+      end
+    cpu_limit: null
+    cpus: 8
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: C8000v-8CPU
+    node_definition: cat8000v
+    ram: 8192
+    tags: []
+    x: 120
+    y: 160
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet2
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet3
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet4
+        slot: 3
+        type: physical
+  - boot_disk_size: null
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname iperf-client
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # IP Information
+      ip addr add 192.168.101.2/24 dev eth0
+      ip link set dev eth0 up
+      ip route add default via 192.168.101.1
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: iperf-client
+    node_definition: alpine
+    ram: null
+    tags: []
+    x: 40
+    y: 400
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+  - boot_disk_size: null
+    configuration: |-
+      # this is a shell script which will be sourced at boot
+      hostname iperf-server
+      # configurable user account
+      USERNAME=cisco
+      PASSWORD=cisco
+      # IP Information
+      ip addr add 192.168.102.2/24 dev eth0
+      ip link set dev eth0 up
+      ip route add default via 192.168.102.1
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: iperf-server
+    node_definition: alpine
+    ram: null
+    tags: []
+    x: 200
+    y: 400
+    interfaces:
+      - id: i0
+        label: eth0
+        slot: 0
+        type: physical
+links:
+  - id: l0
+    n1: n1
+    n2: n0
+    i1: i0
+    i2: i1
+    conditioning: {}
+    label: iperf-client-b-eth0<->C8000v-8CPU-GigabitEthernet1
+  - id: l1
+    n1: n2
+    n2: n0
+    i1: i0
+    i2: i2
+    conditioning: {}
+    label: iperf-server-b-eth0<->C8000v-8CPU-GigabitEthernet2
+lab:
+  description: ''
+  notes: |-
+    ## Notes:
+    * iperf nodes username/password are cisco/cisco
+    * iperf-client is 192.168.101.2
+    * iperf-server is 192.168.102.2
+    * This lab is not intended for actual load testing. It is strictly to understand software-based forwarding. It is simultaneously performance limited by non-optimized deployment inside CML as well as throughput license limits. We're really only looking for small differences in show command output to see that traffic is indeed distributed across dataplane workers..
+    * The C8000V must be reloaded once after first boot for the bootstrap config's resource profile to take effect.
+
+    ## Observe dataplane worker process assignments on both routers
+    * `show platform hardware qfp active datapath infrastructure bindings`
+    * `show platform hardware qfp active datapath infrastructure sw-cio`
+
+    ## Observe utilization under load
+    Catalyst 8000V is a "load-based distribution" platform. Even the elephant flow will see packets spread across multiple dataplane workers. This would behave differently on the C8300 for example.
+
+    ### Twenty 10Mbps UDP Streams: a decent amount of diffuse traffic
+    1. On iperf-server: `iperf -s -u -p 5001-5020`
+    2. On iperf-client: `iperf -c 192.168.102.2 -p 5001-5020 -t 60 -u -b 10m -e -i 5`
+    3.  On router: `show platform hardware qfp active datapath infrastructure sw-cio` (multiple times 3-5 seconds apart)
+
+    ### One 200Mbps UDP Stream: an elephant flow
+    1. On iperf-server: `iperf -s -u`
+    2. On iperf-client: `iperf -c 192.168.102.2 -t 60 -u -b 200m  -e -i 5`
+    3.  On router: `show platform hardware qfp active datapath infrastructure sw-cio` (multiple times 3-5 seconds apart)
+
+    ##  Dynamic core assignments
+    ```
+    show platform software cpu alloc
+    conf t
+    platform resource data-plane-heavy
+    wr
+    reload
+    ```
+
+    ## References:
+    * BRKENT-2653: http://cs.co/9006u9Osq
+    * C8200/8300 Arch Whitepaper: http://cs.co/9005u9OyS
+    * https://www.cisco.com/c/en/us/td/docs/routers/C8000V/Configuration/c8000v-installation-configuration-guide/m_configuring_vcpu.html
+  title: C8000v Forwarding
+  version: 0.2.1
