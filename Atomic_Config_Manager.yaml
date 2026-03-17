@@ -305,7 +305,7 @@ lab:
     # Validate, Implement, and Commit Your Change
     1. Verify your configlet: `Customer-Edge# acm configlet status`
     2. Validate your configlet: `Customer-Edge#acm merge mybigchange validate`
-    3. Implement your change with automatic revert after 5 minutes: `Customer-Edge# acm merge mybigchange timer 300`
+    3. Implement your change with automatic revert after 5 minutes: `Customer-Edge# acm merge mybigchange timeout 300`
     4. Simulate moving the Customer-Edge router to a new ISP:
         1. Delete the link between Provider-Edge and Customer-Edge
         2. Create a new link between Provider-Edge E0/1 and Customer-Edge Gi1
