@@ -1,0 +1,1255 @@
+annotations:
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#808080FF'
+    rotation: 0
+    text_bold: false
+    text_content: 192.168.12.0/24
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -320.0
+    y1: -40.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#4EA900'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      VLAN 10:
+      10.0.10.0/24
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -600.0
+    y1: -120.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#4EA900'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      VLAN 12:
+      10.0.12.0/24
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -40.0
+    y1: -120.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#4EA900'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      loopback10:
+      10.255.10.1
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -840.0
+    y1: -160.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#A90000'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      loopback11:
+      172.31.11.1
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -840.0
+    y1: -80.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#A90000'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      VLAN 11:
+      172.16.10.0/24
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -600.0
+    y1: -40.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#4EA900'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      loopback10:
+      10.255.10.2
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: 200.0
+    y1: -160.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#A90000'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      VLAN 13:
+      172.16.13.0/24
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -40.0
+    y1: -40.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#A90000'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      loopback11:
+      172.31.11.2
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: 200.0
+    y1: -80.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#808080FF'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      Loopback0:
+      192.168.255.1
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -440.0
+    y1: -160.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#808080FF'
+    rotation: 0
+    text_bold: false
+    text_content: |-
+      Loopback0:
+      192.168.255.2
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -200.0
+    y1: -160.0
+    z_index: 0
+  - border_color: '#00000000'
+    border_style: ''
+    color: '#4EA900'
+    rotation: 0
+    text_bold: false
+    text_content: 10.0.100.2
+    text_font: monospace
+    text_italic: false
+    text_size: 12
+    text_unit: pt
+    thickness: 1
+    type: text
+    x1: -720.0
+    y1: -280.0
+    z_index: 0
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: |-
+          hostname sw1
+          !
+          vrf definition green
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          vrf definition red
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          ip routing
+          !
+          no logging console
+          no aaa new-model
+          !
+          vtp mode transparent
+          !
+          license boot level network-advantage addon dna-advantage
+          !
+          spanning-tree mode rapid-pvst
+          !
+          vlan 10-11
+          !
+          interface GigabitEthernet1/0/1
+           switchport mode trunk
+           spanning-tree portfast trunk
+          !
+          interface GigabitEthernet1/0/2
+           no switchport
+           ip address 192.168.12.1 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 1 area 0
+          !
+          !
+          interface loopback0
+           ip address 192.168.255.1 255.255.255.255
+           ip ospf 1 area 0
+          !
+          interface Vlan10
+           vrf forwarding green
+           ip address 10.0.10.2 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 10 area 0
+          !
+          interface Vlan11
+           vrf forwarding red
+           ip address 172.16.10.2 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 11 area 0
+          !
+          router ospf 10 vrf green
+          !
+          router ospf 1
+          !
+          router ospf 11 vrf red
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: null
+    label: sw1
+    node_definition: cat9000v-uadp
+    parameters: {}
+    ram: null
+    tags: []
+    x: -400
+    y: -80
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet1/0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet1/0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet1/0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet1/0/4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet1/0/5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet1/0/6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet1/0/7
+        mac_address: null
+        type: physical
+        slot: 7
+      - id: i9
+        label: GigabitEthernet1/0/8
+        mac_address: null
+        type: physical
+        slot: 8
+      - id: i10
+        label: GigabitEthernet1/0/9
+        mac_address: null
+        type: physical
+        slot: 9
+      - id: i11
+        label: GigabitEthernet1/0/10
+        mac_address: null
+        type: physical
+        slot: 10
+      - id: i12
+        label: GigabitEthernet1/0/11
+        mac_address: null
+        type: physical
+        slot: 11
+      - id: i13
+        label: GigabitEthernet1/0/12
+        mac_address: null
+        type: physical
+        slot: 12
+      - id: i14
+        label: GigabitEthernet1/0/13
+        mac_address: null
+        type: physical
+        slot: 13
+      - id: i15
+        label: GigabitEthernet1/0/14
+        mac_address: null
+        type: physical
+        slot: 14
+      - id: i16
+        label: GigabitEthernet1/0/15
+        mac_address: null
+        type: physical
+        slot: 15
+      - id: i17
+        label: GigabitEthernet1/0/16
+        mac_address: null
+        type: physical
+        slot: 16
+      - id: i18
+        label: GigabitEthernet1/0/17
+        mac_address: null
+        type: physical
+        slot: 17
+      - id: i19
+        label: GigabitEthernet1/0/18
+        mac_address: null
+        type: physical
+        slot: 18
+      - id: i20
+        label: GigabitEthernet1/0/19
+        mac_address: null
+        type: physical
+        slot: 19
+      - id: i21
+        label: GigabitEthernet1/0/20
+        mac_address: null
+        type: physical
+        slot: 20
+      - id: i22
+        label: GigabitEthernet1/0/21
+        mac_address: null
+        type: physical
+        slot: 21
+      - id: i23
+        label: GigabitEthernet1/0/22
+        mac_address: null
+        type: physical
+        slot: 22
+      - id: i24
+        label: GigabitEthernet1/0/23
+        mac_address: null
+        type: physical
+        slot: 23
+      - id: i25
+        label: GigabitEthernet1/0/24
+        mac_address: null
+        type: physical
+        slot: 24
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: |-
+          hostname sw2
+          !
+          boot-start-marker
+          boot-end-marker
+          !
+          !
+          vrf definition green
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          vrf definition red
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          ip routing
+          !
+          no logging console
+          no aaa new-model
+          !
+          vtp mode transparent
+          !
+          license boot level network-advantage addon dna-advantage
+          !
+          !
+          spanning-tree mode rapid-pvst
+          spanning-tree extend system-id
+          !
+          vlan 12-13
+          !
+          interface GigabitEthernet1/0/1
+           switchport mode trunk
+           spanning-tree portfast trunk
+          !
+          interface GigabitEthernet1/0/2
+           no switchport
+           ip address 192.168.12.2 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 1 area 0
+          !
+          interface loopback0
+           ip address 192.168.255.2 255.255.255.255
+           ip ospf 1 area 0
+          !
+          interface Vlan12
+           vrf forwarding green
+           ip address 10.0.12.1 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 10 area 0
+          !
+          interface Vlan13
+           vrf forwarding red
+           ip address 172.16.13.1 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 11 area 0
+          !
+          router ospf 10 vrf green
+          !
+          router ospf 1
+          !
+          router ospf 11 vrf red
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: null
+    label: sw2
+    node_definition: cat9000v-uadp
+    parameters: {}
+    ram: null
+    tags: []
+    x: -120
+    y: -80
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet1/0/1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet1/0/2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet1/0/3
+        mac_address: null
+        type: physical
+        slot: 3
+      - id: i5
+        label: GigabitEthernet1/0/4
+        mac_address: null
+        type: physical
+        slot: 4
+      - id: i6
+        label: GigabitEthernet1/0/5
+        mac_address: null
+        type: physical
+        slot: 5
+      - id: i7
+        label: GigabitEthernet1/0/6
+        mac_address: null
+        type: physical
+        slot: 6
+      - id: i8
+        label: GigabitEthernet1/0/7
+        mac_address: null
+        type: physical
+        slot: 7
+      - id: i9
+        label: GigabitEthernet1/0/8
+        mac_address: null
+        type: physical
+        slot: 8
+      - id: i10
+        label: GigabitEthernet1/0/9
+        mac_address: null
+        type: physical
+        slot: 9
+      - id: i11
+        label: GigabitEthernet1/0/10
+        mac_address: null
+        type: physical
+        slot: 10
+      - id: i12
+        label: GigabitEthernet1/0/11
+        mac_address: null
+        type: physical
+        slot: 11
+      - id: i13
+        label: GigabitEthernet1/0/12
+        mac_address: null
+        type: physical
+        slot: 12
+      - id: i14
+        label: GigabitEthernet1/0/13
+        mac_address: null
+        type: physical
+        slot: 13
+      - id: i15
+        label: GigabitEthernet1/0/14
+        mac_address: null
+        type: physical
+        slot: 14
+      - id: i16
+        label: GigabitEthernet1/0/15
+        mac_address: null
+        type: physical
+        slot: 15
+      - id: i17
+        label: GigabitEthernet1/0/16
+        mac_address: null
+        type: physical
+        slot: 16
+      - id: i18
+        label: GigabitEthernet1/0/17
+        mac_address: null
+        type: physical
+        slot: 17
+      - id: i19
+        label: GigabitEthernet1/0/18
+        mac_address: null
+        type: physical
+        slot: 18
+      - id: i20
+        label: GigabitEthernet1/0/19
+        mac_address: null
+        type: physical
+        slot: 19
+      - id: i21
+        label: GigabitEthernet1/0/20
+        mac_address: null
+        type: physical
+        slot: 20
+      - id: i22
+        label: GigabitEthernet1/0/21
+        mac_address: null
+        type: physical
+        slot: 21
+      - id: i23
+        label: GigabitEthernet1/0/22
+        mac_address: null
+        type: physical
+        slot: 22
+      - id: i24
+        label: GigabitEthernet1/0/23
+        mac_address: null
+        type: physical
+        slot: 23
+      - id: i25
+        label: GigabitEthernet1/0/24
+        mac_address: null
+        type: physical
+        slot: 24
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: |-
+          platform console serial
+          platform hardware throughput level MB T0
+          !
+          hostname r1
+          !
+          vrf definition green
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          vrf definition red
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          no logging console
+          no aaa new-model
+          !
+          !
+          interface Loopback10
+           vrf forwarding green
+           ip address 10.255.10.1 255.255.255.255
+           ip ospf 10 area 0
+          !
+          interface Loopback11
+           vrf forwarding red
+           ip address 172.31.11.1 255.255.255.255
+           ip ospf 11 area 0
+          !
+          interface GigabitEthernet1
+           no ip address
+           no shutdown
+          !
+          interface GigabitEthernet1.10
+           encapsulation dot1Q 10
+           vrf forwarding green
+           ip address 10.0.10.1 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 10 area 0
+          !
+          interface GigabitEthernet1.11
+           encapsulation dot1Q 11
+           vrf forwarding red
+           ip address 172.16.10.1 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 11 area 0
+          !
+          interface GigabitEthernet2
+           vrf forwarding green
+           ip address 10.0.100.1 255.255.255.0
+           ip ospf 10 area 0
+           no shutdown
+          !
+          router ospf 10 vrf green
+           passive-interface GigabitEthernet2
+          !
+          router ospf 11 vrf red
+          !
+          license boot level network-advantage addon dna-advantage
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: r1
+    node_definition: cat8000v
+    parameters: {}
+    ram: null
+    tags: []
+    x: -680
+    y: -80
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet2
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet3
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet4
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: boot.sh
+        content: |-
+          # insert more commands here
+          # ip address add dev eth1 10.0.0.1/24
+          # ip link set dev eth1 up
+          #
+          ip address add dev eth0 10.0.100.2/24
+          ip route add default via 10.0.100.1 dev eth0
+
+          # keep the next line to indicate that the machine is ready
+          echo "READY" >/dev/console
+          cat /etc/motd
+          exit 0
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: green-host
+    node_definition: net-tools
+    parameters: {}
+    ram: null
+    tags: []
+    x: -680
+    y: -240
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i1
+        label: eth1
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i2
+        label: eth2
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i3
+        label: eth3
+        mac_address: null
+        type: physical
+        slot: 3
+  - boot_disk_size: null
+    configuration:
+      - name: iosxe_config.txt
+        content: |-
+          platform console serial
+          platform hardware throughput level MB T0
+          !
+          hostname r2
+          !
+          vrf definition green
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          vrf definition red
+           !
+           address-family ipv4
+           exit-address-family
+          !
+          no logging console
+          no aaa new-model
+          !
+          interface Loopback10
+           vrf forwarding green
+           ip address 10.255.10.2 255.255.255.255
+           ip ospf 10 area 0
+          !
+          interface Loopback11
+           vrf forwarding red
+           ip address 172.31.11.2 255.255.255.255
+           ip ospf 11 area 0
+          !
+          interface GigabitEthernet1
+           no ip address
+           no shutdown
+          !
+          interface GigabitEthernet1.12
+           encapsulation dot1Q 12
+           vrf forwarding green
+           ip address 10.0.12.2 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 10 area 0
+          !
+          interface GigabitEthernet1.13
+           encapsulation dot1Q 13
+           vrf forwarding red
+           ip address 172.16.13.2 255.255.255.0
+           ip ospf network point-to-point
+           ip ospf 11 area 0
+          !
+          router ospf 10 vrf green
+          !
+          router ospf 11 vrf red
+          !
+          license boot level network-advantage addon dna-advantage
+          !
+          end
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n4
+    image_definition: null
+    label: r2
+    node_definition: cat8000v
+    parameters: {}
+    ram: null
+    tags: []
+    x: 160
+    y: -80
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        mac_address: null
+        type: physical
+        slot: 0
+      - id: i2
+        label: GigabitEthernet2
+        mac_address: null
+        type: physical
+        slot: 1
+      - id: i3
+        label: GigabitEthernet3
+        mac_address: null
+        type: physical
+        slot: 2
+      - id: i4
+        label: GigabitEthernet4
+        mac_address: null
+        type: physical
+        slot: 3
+links:
+  - id: l0
+    n1: n0
+    n2: n1
+    i1: i3
+    i2: i3
+    conditioning: {}
+    label: sw1-GigabitEthernet1/0/2<->sw2-GigabitEthernet1/0/2
+  - id: l1
+    n1: n2
+    n2: n0
+    i1: i1
+    i2: i2
+    conditioning: {}
+    label: r1-GigabitEthernet1<->sw1-GigabitEthernet1/0/1
+  - id: l2
+    n1: n3
+    n2: n2
+    i1: i0
+    i2: i2
+    conditioning: {}
+    label: green-host-eth0<->r1-GigabitEthernet2
+  - id: l3
+    n1: n4
+    n2: n1
+    i1: i1
+    i2: i2
+    conditioning: {}
+    label: r2-GigabitEthernet1<->sw2-GigabitEthernet1/0/1
+lab:
+  description: Uses EPVN L3VNI to transport TrustSec tags across and unfriendly provider
+    network. We also showcase basic tenant routed multicast.
+  notes: |-
+    # <a>Table of Contents</a>
+    * [Scenario](#Scenario)
+    * [EVPN](#EVPN)
+    * [Let's Add TrustSec](#TrustSec)
+    * [And now for Multicast](#Multicast)
+    <br>
+
+    # <a id="Scenario">Scenario</a>
+    There is a layer-2 service provider link giving us connectivity between sw1 and sw2. This layer-2 transport does not support TrustSec tagging (CMD header). GRE tunnels are always an answer, but we have multiple VRFs. To save on the number of tunnels, we'll use VXLAN EVPN instead.
+
+    The topology has basic OSPF routing configured for the default VRF between sw1 and sw2 as well as red and green VRFs.
+
+    # <a id="EVPN">EVPN</a>
+    [Reference configuration guide](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/17-18/configuration_guide/vxlan/b_1718_bgp_evpn_vxlan_9500_cg/configuring_evpn_vxlan_layer_3_overlay_network.html)
+    <br>
+
+    ### Notes on configuration options to avoid
+    ```
+    vrf definition [name]
+     vnid [VNI] evpn-instance vni auto core-vlan [VLAN ID]
+    ```
+    [(Reference)](https://www.cisco.com/c/en/us/support/docs/switches/catalyst-9300-series-switches/220804-use-vnid-to-auto-provision-l3vni-core-s.html) <br>
+    Automatically creates: <ul><li>route target import and export policy in the VRF<li>VLAN 1000<li>VNI membership for VLAN 1000 to VNI 10000<li>IP unnumbered SVI for VLAN 1000 with no autostate<li>Associates VNI to the NVE interface</ul>
+    This is awesome for fabrics where multicast isn't needed, but isn't a good fit in our case. We need to be able to add pim sparse-mode to our core VLAN SVI, and this macro won't let us do that.
+    <br>
+
+    ### Before you begin
+    Please allow the Catalyst 9000v sufficient boot time. After the system appears ready, it may still need an additional 1-3 minutes before the emulated ASIC is operational, interfaces are up, and traffic can be forwarded. Validate you can ping from 192.168.12.1 to 192.168.12.2 before proceeding with remaining configuration.
+
+    ## Data Plane Bring-up
+    ### Configure
+    On both sw1 and sw2:
+    ```
+    vlan configuration 1000
+     member vni 10000
+    vlan configuration 1001
+     member vni 10001
+    !
+    interface Vlan1000
+     vrf forwarding green
+     ip unnumbered Loopback0
+     no autostate
+    !
+    interface Vlan1001
+     vrf forwarding red
+     ip unnumbered Loopback0
+     no autostate
+    !
+    interface nve1
+     no ip address
+     source-interface Loopback0
+     host-reachability protocol bgp
+     member vni 10000 vrf green
+     member vni 10001 vrf red
+    ```
+    <br>
+
+    ### Verify
+    There's not too much to see at this point, but you may take a look at the following on both sw1 and sw2:
+    ```
+    show vrf detail green
+    show vrf detail red
+    show nve vni 10000 detail ! note the presence of VLAN and SVI MAC
+    show nve vni 10001 detail ! note the presence of VLAN and SVI MAC
+    ```
+    <br>
+
+    ## Control Plane Bring-up
+    We need BGP to exchange EVPN routes for IP Prefixes as well as MAC addresses. VXLAN is a layer-2 tunneling mechanism, so traffic over the tunnel will need a destination MAC address even in the absence of L2VNIs.
+
+    ### Configure
+    On sw1:
+    ```
+    router bgp 65000
+     bgp router-id interface Loopback0
+     no bgp default ipv4-unicast
+     neighbor 192.168.255.2 remote-as 65000
+     neighbor 192.168.255.2 update-source Loopback0
+     !
+     address-family l2vpn evpn
+      neighbor 192.168.255.2 activate
+      neighbor 192.168.255.2 send-community extended
+     exit-address-family
+    !
+    l2vpn evpn
+     router-id Loopback0
+    !
+    vrf rd-auto
+    vrf definition green
+      address-family ipv4
+       route-target export 65000:10000
+       route-target import 65000:10000
+       route-target export 65000:10000 stitching
+       route-target import 65000:10000 stitching
+     vrf definition red
+      address-family ipv4
+       route-target export 65000:10001
+       route-target import 65000:10001
+       route-target export 65000:10001 stitching
+       route-target import 65000:10001 stitching
+    ```
+
+    On sw2:
+    ```
+    router bgp 65000
+     bgp router-id interface Loopback0
+     no bgp default ipv4-unicast
+     neighbor 192.168.255.1 remote-as 65000
+     neighbor 192.168.255.1 update-source Loopback0
+     !
+     address-family l2vpn evpn
+      neighbor 192.168.255.1 activate
+      neighbor 192.168.255.1 send-community extended
+     exit-address-family
+    !
+    l2vpn evpn
+     router-id Loopback0
+    !
+    vrf rd-auto
+    vrf definition green
+      address-family ipv4
+       route-target export 65000:10000
+       route-target import 65000:10000
+       route-target export 65000:10000 stitching
+       route-target import 65000:10000 stitching
+     vrf definition red
+      address-family ipv4
+       route-target export 65000:10001
+       route-target import 65000:10001
+       route-target export 65000:10001 stitching
+       route-target import 65000:10001 stitching
+    ```
+
+    Next, let's redistribute between BGP and OSPF to enable end-to-end reachability from r1 to r2.
+    On sw1 and sw2:
+    ```
+    router bgp 65000
+     address-family ipv4 vrf green
+      advertise l2vpn evpn
+      redistribute ospf 10
+     exit-address-family
+     !
+     address-family ipv4 vrf red
+      advertise l2vpn evpn
+      redistribute ospf 11
+     exit-address-family
+    !
+    router ospf 10 vrf green
+      capability vrf-lite
+      redistribute bgp 65000 metric 1000 tag 65000
+    router ospf 11 vrf red
+      capability vrf-lite
+      redistribute bgp 65000 metric 1000 tag 65000
+    ```
+    <br>
+
+    ### Verify
+    You should have a few prefixes learnt via BGP on both sw1 and sw2:
+    ``` show bgp l2vpn evpn summary ```
+
+    You should be able to ping from end to end:<br>
+    ```r1# ping vrf green 10.255.10.2 source lo10```<br>
+    ```r1# ping vrf red 172.31.11.2 source lo11```
+
+    On sw1, you should have output similar to below. Take your time to try understand this output, but the most important thing to know for L3VNI: The next-hop mac is 5254.00B1.2FDE -- this matches ```sw2# show nve vni 10000 detail``` or ```sw2# show int vlan 1000 | inc bia```
+
+    The "core vlan" concept is strange at first, but VXLAN is layer-2, and we simply need a next-hop MAC address. Routers participating in VXLAN EVPN would use a bridge-domain interface for the same purpose.
+
+    ```
+    sw1#show bgp l2vpn evpn 10.255.10.2/32
+    BGP routing table entry for [5][192.168.255.2:5][0][32][10.255.10.2]/17, version 20
+    Paths: (1 available, best #1, table EVPN-BGP-Table)
+      Flag: 0x100
+      Not advertised to any peer
+      Refresh Epoch 1
+      Local
+        192.168.255.2 (metric 2) (via default) from 192.168.255.2 (192.168.255.2)
+          Origin incomplete, metric 2, localpref 100, valid, internal, best
+          EVPN ESI: 00000000000000000000, Gateway Address: 0.0.0.0, VNI Label 10000, MPLS VPN Label 0
+          Extended Community: RT:65000:10000 OSPF DOMAIN ID:0x0005:0x0000000A0200
+            ENCAP:8 Router MAC:5254.00B1.2FDE OSPF RT:0.0.0.0:2:0
+            OSPF ROUTER ID:10.0.12.1:0
+          rx pathid: 0, tx pathid: 0x0
+    ```
+    <br>
+
+    ## <a id="TrustSec">Let's Add TrustSec</a>
+    Let's pretend r1 connects to a service which doesn't support TrustSec tagging natively, e.g., business partner VPN, an ACI fabric, etc. We'll use static IP-SGT bindings here, but would likely learn these bindings from ISE via SXP in a production environment.
+
+    In the configuration below, ```group-based-policy``` under ```interface nve``` is what causes the switch to copy the SGT from the CMD header into the GPO attribute of the VXLAN header.
+
+    ### Configure
+    On r1:
+    ```
+    interface GigabitEthernet1.10
+     cts manual
+     policy static sgt 2 trusted
+    interface GigabitEthernet1.11
+     cts manual
+     policy static sgt 2 trusted
+    !
+    cts role-based sgt-map vrf green 10.0.100.2 sgt 10
+    ```
+
+    On sw1 and sw2:
+    ```
+    interface GigabitEthernet1/0/1
+     cts manual
+     policy static sgt 2 trusted
+    interface nve1
+     group-based-policy
+    ```
+
+    On r2:
+    ```
+    interface GigabitEthernet1.12
+     cts manual
+     policy static sgt 2 trusted
+    interface GigabitEthernet1.13
+     cts manual
+     policy static sgt 2 trusted
+    ```
+    <br>
+
+    ### Verify
+    On r1: ```show cts role-based sgt-map all```<br>
+    On all devices: ```show cts interface brief```
+
+    View the SGT values in the CMD on Ethernet links and the Group Policy ID value in the VXLAN header on the link between sw1 and sw2 in a packet capture.
+
+    ## <a id="Multicast">And now for Multicast</a>
+    Aside from removing the complexity of end-to-end VRF lite that GRE tunnels would have created in this scenario, efficient multicast is another reason VXLAN EVPN shines for this situation. Here we can choose between ingress/head-end replication or leverage multicast support in the underlay using Tenant Routed Multiast [(TRM)](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/17-18/configuration_guide/vxlan/b_1718_bgp_evpn_vxlan_9500_cg/configuring_tenant_routed_multicast.html).
+
+    In summary, BGP's MVPN address family is used to stitch together isolated PIM domains. RP placement is fully flexible if needed. We'll stick to SSM for our example.
+
+    [Reference Configuration Guide](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/17-18/configuration_guide/vxlan/b_1718_bgp_evpn_vxlan_9500_cg/configuring_tenant_routed_multicast.html)
+
+    ### Configure
+    On r1:
+    ```
+    ip multicast-routing vrf green distributed
+    !
+    interface GigabitEthernet1.10
+     ip pim sparse-mode
+    interface GigabitEthernet2
+     ip pim sparse-mode
+    interface Loopback10
+     ip pim sparse-mode
+    ip pim vrf green rp-add 10.255.10.10
+    ```
+
+    On sw1:
+    ```
+    ip multicast-routing
+    ip multicast-routing vrf green
+    !
+    interface vlan10
+     ip pim sparse-mode
+    interface vlan1000
+     ip pim sparse-mode
+    interface GigabitEthernet1/0/2
+     ip pim sparse-mode
+    interface loopback0
+     ip pim sparse-mode
+    !
+    interface Loopback10
+     description anycast RP
+     vrf forwarding green
+     ip address 10.255.10.10 255.255.255.255
+     ip pim sparse-mode
+     ip ospf 10 area 0
+    !
+    vrf definition green
+     address-family ipv4
+      mdt auto-discovery vxlan
+      mdt default vxlan 232.1.1.1
+      mdt overlay use-bgp spt-only
+      exit-address-family
+    !
+    ip pim rp-address 192.168.255.1
+    ip pim vrf green rp-address 10.255.10.10
+    !
+    router bgp 65000
+    address-family ipv4 mvpn
+      neighbor 192.168.255.2 activate
+      neighbor 192.168.255.2 send-community both
+    ```
+
+    On sw2:
+    ```
+    ip multicast-routing
+    ip multicast-routing vrf green
+    !
+    interface vlan12
+     ip pim sparse-mode
+    interface vlan1000
+     ip pim sparse-mode
+    interface GigabitEthernet1/0/2
+     ip pim sparse-mode
+    interface loopback0
+     ip pim sparse-mode
+    !
+    interface Loopback10
+     description anycast RP
+     vrf forwarding green
+     ip address 10.255.10.10 255.255.255.255
+     ip pim sparse-mode
+     ip ospf 10 area 0
+    !
+    vrf definition green
+     address-family ipv4
+      mdt auto-discovery vxlan
+      mdt default vxlan 232.1.1.1
+      mdt overlay use-bgp spt-only
+      exit-address-family
+    !
+    ip pim rp-address 192.168.255.1
+    ip pim vrf green rp-address 10.255.10.10
+    !
+    router bgp 65000
+    address-family ipv4 mvpn
+      neighbor 192.168.255.1 activate
+      neighbor 192.168.255.1 send-community both
+    ```
+
+
+    On r2:
+    ```
+    ip multicast-routing vrf green distributed
+    !
+    interface GigabitEthernet1.12
+     ip pim sparse-mode
+    interface Loopback10
+     ip pim sparse-mode
+    ip pim vrf green rp-add 10.255.10.10
+    ```
+    <br>
+
+    ### Verify
+
+    On r2:
+    ```
+    interface Loopback10
+    ip igmp join-group 239.1.1.1
+    ```
+
+    On r1: ``` ping vrf green 239.1.1.1 repeat 10```
+
+    On any device:
+    ``` show ip mroute vrf green 239.1.1.1```
+
+    On sw1 and sw2:
+    ```show bgp ipv4 mvpn vrf green detail```
+  title: Simple EVPN L3VNI
+  version: 0.3.0
