@@ -8,3 +8,6 @@ https://developer.cisco.com/docs/modeling-labs/managing-lab-repositories/
 The purpose of this lab is to understand the new Atomic Configuration Manager feature introduced in IOS-XE 17.18. This feature allows you to apply configuration changes as a transaction. ACM supports syntax validation, config diffs, and automatic or manual rollback in the event the change is not successful. 
 
 This lab requires IOS-XE 17.18.2 for Catalyst 8000V. The image definition must be named "c8000v-17-18-2", or you must modify the yaml file accordingly before importing it.
+
+## Simple EVPN L3VNI
+Uses EPVN L3VNI to transport TrustSec tags across and unfriendly provider network. We also showcase basic tenant routed multicast.
