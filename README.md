@@ -23,7 +23,7 @@ Notes: the default node definition in CML for C9000v includes a start-up configu
 Graceful Insertion and Removal allows us to isolate a network device from the topology to minimize the impact of maintenance. Here we use a Nexus 9000v to showcase this behavior, but it can be done on many other platforms as well.
 
 ## Simple EVPN L3VNI
-Uses EPVN L3VNI to transport TrustSec tags across and unfriendly provider network. We also showcase basic tenant routed multicast.
+Uses EPVN L3VNI to transport TrustSec tags across an unfriendly provider network. We also showcase basic tenant routed multicast.
 
 ## Simple ePBR
 Policy-based routing using NBAR protocol match is a very useful tool for SSE integration. Some traffic does not benefit from an SSE service, e.g., encrypted applications leveraging certificate pinning. Other traffic should always take the most optimal path for the sake of user experience -- such as voice. This lab uses a simple telnet vs. ssh example to showcase the feature.
