@@ -15,7 +15,9 @@ This lab requires IOS-XE 17.18.2 for Catalyst 8000V. The image definition must b
 This lab helps us understand software-based forwarding platforms such as the Catalyst 8000 (C8500L or smaller) as well as Secure Router 8000 platfroms (8400 and smaller). We explore how traffic is load-balanced across different data plane processes.
 
 ## PnP Discovery
-These two labs are meant to be used in conjunction with an external Catalyst Center instance. We leverage DHCP and authoritative DNS on a cisco device to enable PnP discovery on Catalyst 9000v switches. You can explore this using front-panel ports as configured, or change the topology to use the management interfaces if you desire.
+These two labs are meant to be used in conjunction with an external Catalyst Center instance. We leverage DHCP and authoritative DNS on a cisco device to enable PnP discovery on Catalyst 9000v switches and Catalyst 9800-CL wireless LAN controllers. You can explore this using front-panel ports as configured, or change the topology to use the management interfaces if you desire on the C9000v.
+
+Notes: the default node definition in CML for C9000v includes a start-up configuration. The presence of start-up config disabled PnP. You'll need need to modify the default node definition or duplicate it. This lab will need to to be edited to match the name of your new node definition.
 
 ## GIR Demo (NX-OS)
 Graceful Insertion and Removal allows us to isolate a network device from the topology to minimize the impact of maintenance. Here we use a Nexus 9000v to showcase this behavior, but it can be done on many other platforms as well.
